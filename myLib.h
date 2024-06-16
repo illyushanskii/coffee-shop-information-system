@@ -15,9 +15,9 @@ typedef struct {
 	float priceSell;
 	int quantity;
 	float weight;
-	char type[STRING];//тип кави (мелена,зерно...)
+	char type[STRING];//С‚РёРї РєР°РІРё (РјРµР»РµРЅР°,Р·РµСЂРЅРѕ...)
 	char country[STRING];
-	char composition[STRING]; //склад кави (арабіка,робуста...)
+	char composition[STRING];//СЃРєР»Р°Рґ РєР°РІРё (Р°СЂР°Р±С–РєР°,СЂРѕР±СѓСЃС‚Р°...)
 } Product;
 
 typedef struct {
@@ -26,7 +26,7 @@ typedef struct {
 	int quantityCart;
 } Cart;
 
-//Глобальні змінні
+//Р“Р»РѕР±Р°Р»СЊРЅС– Р·РјС–РЅРЅС–
 
 Product* massiveProd = NULL;
 Cart* massiveCart = NULL;
@@ -37,50 +37,50 @@ float totalPrice = 0.0;
 int num = 0;
 int id = 0;
 
-//Функція для ініціалізації товару
+//Р¤СѓРЅРєС†С–СЏ РґР»СЏ С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— С‚РѕРІР°СЂСѓ
 
 Product initProduct(int id) {
 	Product Product;
-	puts("Введіть інформацію про товар\n");
+	puts("Г‚ГўГҐГ¤ВіГІГј ВіГ­ГґГ®Г°Г¬Г Г¶ВіГѕ ГЇГ°Г® ГІГ®ГўГ Г°\n");
 	Product.id = id;
 	Product.popularity = 0;
 
-	printf("Введіть назву:");
+	printf("Г‚ГўГҐГ¤ВіГІГј Г­Г Г§ГўГі:");
 	scanf_s("%s", Product.name, STRING);
 
 	do {
-		printf("Введіть ціну закупки:");
+		printf("Г‚ГўГҐГ¤ВіГІГј Г¶ВіГ­Гі Г§Г ГЄГіГЇГЄГЁ:");
 		scanf_s("%f", &Product.priceBuy);
 	} while (Product.priceBuy <= 0.0);
 
 	do {
-		printf("Введіть ціну продажу:");
+		printf("Г‚ГўГҐГ¤ВіГІГј Г¶ВіГ­Гі ГЇГ°Г®Г¤Г Г¦Гі:");
 		scanf_s("%f", &Product.priceSell);
 	} while (Product.priceSell <= Product.priceBuy);
 
 	do {
-		printf("Введіть кількість товару:");
+		printf("Г‚ГўГҐГ¤ВіГІГј ГЄВіГ«ГјГЄВіГ±ГІГј ГІГ®ГўГ Г°Гі:");
 		scanf_s("%d", &Product.quantity);
 	} while (Product.quantity <= 0);
 
 	do {
-		printf("Введіть масу нетто в грамах:");
+		printf("Г‚ГўГҐГ¤ВіГІГј Г¬Г Г±Гі Г­ГҐГІГІГ® Гў ГЈГ°Г Г¬Г Гµ:");
 		scanf_s("%f", &Product.weight);
 	} while (Product.weight <= 0);
 
-	printf("Введіть тип кави (мелена,зерно...):");
+	printf("Г‚ГўГҐГ¤ВіГІГј ГІГЁГЇ ГЄГ ГўГЁ (Г¬ГҐГ«ГҐГ­Г ,Г§ГҐГ°Г­Г®...):");
 	scanf_s("%s", Product.type, STRING);
 
-	printf("Введіть країну виробника:");
+	printf("Г‚ГўГҐГ¤ВіГІГј ГЄГ°Г ВїГ­Гі ГўГЁГ°Г®ГЎГ­ГЁГЄГ :");
 	scanf_s("%s", Product.country, STRING);
 
-	printf("Введіть склад кави (арабіка,робуста...):");
+	printf("Г‚ГўГҐГ¤ВіГІГј Г±ГЄГ«Г Г¤ ГЄГ ГўГЁ (Г Г°Г ГЎВіГЄГ ,Г°Г®ГЎГіГ±ГІГ ...):");
 	scanf_s("%s", Product.composition, STRING);
 
 	return Product;
 }
 
-//Функція для ініціалізації кошика
+//Р¤СѓРЅРєС†С–СЏ РґР»СЏ С–РЅС–С†С–Р°Р»С–Р·Р°С†С–С— РєРѕС€РёРєР°
 
 Cart initCart(Product Product, int quantity) {
 	Cart Cart;
@@ -90,21 +90,21 @@ Cart initCart(Product Product, int quantity) {
 	return Cart;
 }
 
-//Функції виведення інформації
+//Р¤СѓРЅРєС†С–С— РІРёРІРµРґРµРЅРЅСЏ С–РЅС„РѕСЂРјР°С†С–С—
 
 void showProduct(Product Product)
 {
-	printf("\n%d) %s  %s  %s  %s | вага %.2f гр.|\nзак. %.2f грн. | прод. %.2f грн. | кільк. %d | поп. %d |\n", Product.id, Product.name,
+	printf("\n%d) %s  %s  %s  %s | ГўГ ГЈГ  %.2f ГЈГ°.|\nГ§Г ГЄ. %.2f ГЈГ°Г­. | ГЇГ°Г®Г¤. %.2f ГЈГ°Г­. | ГЄВіГ«ГјГЄ. %d | ГЇГ®ГЇ. %d |\n", Product.id, Product.name,
 		Product.type, Product.composition, Product.country, Product.weight, Product.priceBuy, Product.priceSell, Product.quantity, Product.popularity);
 }
 
 void showArr(Product* massive)
 {
 	if (num <= 0) {
-		printf("Список пустий!\n");
+		printf("Г‘ГЇГЁГ±Г®ГЄ ГЇГіГ±ГІГЁГ©!\n");
 		return;
 	}
-	puts("\nid) Назва товару  тип кави  склад кави  країна виробника | маса нетто |\n ціна закупки | ціна продажу | кількість товару | популярність |");
+	puts("\nid) ГЌГ Г§ГўГ  ГІГ®ГўГ Г°Гі  ГІГЁГЇ ГЄГ ГўГЁ  Г±ГЄГ«Г Г¤ ГЄГ ГўГЁ  ГЄГ°Г ВїГ­Г  ГўГЁГ°Г®ГЎГ­ГЁГЄГ  | Г¬Г Г±Г  Г­ГҐГІГІГ® |\n Г¶ВіГ­Г  Г§Г ГЄГіГЇГЄГЁ | Г¶ВіГ­Г  ГЇГ°Г®Г¤Г Г¦Гі | ГЄВіГ«ГјГЄВіГ±ГІГј ГІГ®ГўГ Г°Гі | ГЇГ®ГЇГіГ«ГїГ°Г­ВіГ±ГІГј |");
 
 	for (int i = 0; i < num; i++)
 	{
@@ -114,14 +114,14 @@ void showArr(Product* massive)
 
 void showUserProduct(Product Product)
 {
-	printf(")Кава %s %s %.2f гр. - %.2f грн.\n%s %s на складі: %d шт.\n", Product.name,
+	printf(")ГЉГ ГўГ  %s %s %.2f ГЈГ°. - %.2f ГЈГ°Г­.\n%s %s Г­Г  Г±ГЄГ«Г Г¤Ві: %d ГёГІ.\n", Product.name,
 		Product.type, Product.weight, Product.priceSell, Product.composition, Product.country, Product.quantity);
 }
 
 void showUserArr()
 {
 	if (num <= 0 || num - empty == 0) {
-		printf("Список пустий!\n");
+		printf("Г‘ГЇГЁГ±Г®ГЄ ГЇГіГ±ГІГЁГ©!\n");
 		return;
 	}
 
@@ -134,14 +134,14 @@ void showUserArr()
 
 void showCart(Cart Cart)
 {
-	printf(")Кава %s %s %.2f гр. - %dшт. x %.2f грн.- %.2f грн.\n%s %s\n", Cart.product.name,
+	printf(")ГЉГ ГўГ  %s %s %.2f ГЈГ°. - %dГёГІ. x %.2f ГЈГ°Г­.- %.2f ГЈГ°Г­.\n%s %s\n", Cart.product.name,
 		Cart.product.type, Cart.product.weight, Cart.quantityCart, Cart.product.priceSell, Cart.priceAll, Cart.product.composition, Cart.product.country);
 }
 
 void showCartArr(Cart* massive, int num, int mode)
 {
 	if (num <= 0 && mode) {
-		printf("Кошик порожній,поповніть його.\n");
+		printf("ГЉГ®ГёГЁГЄ ГЇГ®Г°Г®Г¦Г­ВіГ©,ГЇГ®ГЇГ®ГўГ­ВіГІГј Г©Г®ГЈГ®.\n");
 		return;
 	}
 
@@ -151,17 +151,17 @@ void showCartArr(Cart* massive, int num, int mode)
 		showCart(massive[i]);
 	}
 	if (mode) {
-		printf("\n________________________ Загальна ціна - %.2f грн.\n", totalPrice);
+		printf("\n________________________ Г‡Г ГЈГ Г«ГјГ­Г  Г¶ВіГ­Г  - %.2f ГЈГ°Г­.\n", totalPrice);
 	}
 }
 
 void showEdit(Product Product)
 {
-	printf("\n1)Назва: %s\n2)Тип: %s\n3)Склад: %s\n4)Країна: %s\n5)Вага: %.2f\n6)Ціна закупки: %.2f\n7)Ціна продажу: %.2f\n8)Кількість: %d\n", Product.name,
+	printf("\n1)ГЌГ Г§ГўГ : %s\n2)Г’ГЁГЇ: %s\n3)Г‘ГЄГ«Г Г¤: %s\n4)ГЉГ°Г ВїГ­Г : %s\n5)Г‚Г ГЈГ : %.2f\n6)Г–ВіГ­Г  Г§Г ГЄГіГЇГЄГЁ: %.2f\n7)Г–ВіГ­Г  ГЇГ°Г®Г¤Г Г¦Гі: %.2f\n8)ГЉВіГ«ГјГЄВіГ±ГІГј: %d\n", Product.name,
 		Product.type, Product.composition, Product.country, Product.weight, Product.priceBuy, Product.priceSell, Product.quantity);
 }
 
-//Фунції запису у файл
+//Р¤СѓРЅС†С–С— Р·Р°РїРёСЃСѓ Сѓ С„Р°Р№Р»
 
 void writeFile(Product* massive) {
 	FILE* file;
@@ -239,7 +239,7 @@ void writeDel(Product Product) {
 	}
 	fseek(file, 0, SEEK_END);
 	if (ftell(file) == 0) {
-		fprintf(file, "id) Назва товару  тип кави  склад кави  країна виробника | маса нетто |\n ціна закупки | ціна продажу | кількість товару | популярність |\n");
+		fprintf(file, "id) ГЌГ Г§ГўГ  ГІГ®ГўГ Г°Гі  ГІГЁГЇ ГЄГ ГўГЁ  Г±ГЄГ«Г Г¤ ГЄГ ГўГЁ  ГЄГ°Г ВїГ­Г  ГўГЁГ°Г®ГЎГ­ГЁГЄГ  | Г¬Г Г±Г  Г­ГҐГІГІГ® |\n Г¶ВіГ­Г  Г§Г ГЄГіГЇГЄГЁ | Г¶ВіГ­Г  ГЇГ°Г®Г¤Г Г¦Гі | ГЄВіГ«ГјГЄВіГ±ГІГј ГІГ®ГўГ Г°Гі | ГЇГ®ГЇГіГ«ГїГ°Г­ВіГ±ГІГј |\n");
 	}
 	fprintf(file, "\n%d) %s  %s  %s  %s | weight %.2f gram|\nbuy %.2f UAH | sell %.2f UAH | quantity %d | popylarity %d |\n", Product.id, Product.name,
 		Product.type, Product.composition, Product.country, Product.weight, Product.priceBuy, Product.priceSell, Product.quantity, Product.popularity);
@@ -276,7 +276,7 @@ void writeCassa() {
 	fclose(file);
 }
 
-//Функції сортування
+//Р¤СѓРЅРєС†С–С— СЃРѕСЂС‚СѓРІР°РЅРЅСЏ
 
 int compName(const void* a, const void* b) {
 	Product* p1 = (Product*)a;
@@ -369,11 +369,11 @@ void sortEmpty(int mode) {
 	}
 }
 
-//Функції пошуку
+//Р¤СѓРЅРєС†С–С— РїРѕС€СѓРєСѓ
 
 int searchProcess(int found, int mode, int inx) {
 	if (!found && mode) {
-		puts("id) Назва товару  тип кави  склад кави  країна виробника | маса нетто |\n ціна закупки | ціна продажу | кількість товару | популярність |");
+		puts("id) ГЌГ Г§ГўГ  ГІГ®ГўГ Г°Гі  ГІГЁГЇ ГЄГ ГўГЁ  Г±ГЄГ«Г Г¤ ГЄГ ГўГЁ  ГЄГ°Г ВїГ­Г  ГўГЁГ°Г®ГЎГ­ГЁГЄГ  | Г¬Г Г±Г  Г­ГҐГІГІГ® |\n Г¶ВіГ­Г  Г§Г ГЄГіГЇГЄГЁ | Г¶ВіГ­Г  ГЇГ°Г®Г¤Г Г¦Гі | ГЄВіГ«ГјГЄВіГ±ГІГј ГІГ®ГўГ Г°Гі | ГЇГ®ГЇГіГ«ГїГ°Г­ВіГ±ГІГј |");
 	}
 	found = +1;
 	if (!mode) {
@@ -388,7 +388,7 @@ int searchProcess(int found, int mode, int inx) {
 }
 void searchName(int mode) {
 	char search[N];
-	printf("Пошук за назвою:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  Г­Г Г§ГўГ®Гѕ:");
 	scanf_s("%s", search, N);
 	searchMessage(mode, "\nSearch for a name '%s'\n", search);
 
@@ -397,12 +397,12 @@ void searchName(int mode) {
 		if (strncmp(massiveProd[inx].name, search, strlen(search)) == 0)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearch(found, mode, "\nПошук за назвою '%s' не дав результатів.\n", search);
+	noSearch(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  Г­Г Г§ГўГ®Гѕ '%s' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", search);
 }
 
 void searchType(int mode) {
 	char search[N];
-	printf("Пошук за типом:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  ГІГЁГЇГ®Г¬:");
 	scanf_s("%s", search, N);
 	searchMessage(mode, "\nSearch for a type '%s'\n", search);
 
@@ -411,12 +411,12 @@ void searchType(int mode) {
 		if (strncmp(massiveProd[inx].type, search, strlen(search)) == 0)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearch(found, mode, "\nПошук за типом '%s' не дав результатів.\n", search);
+	noSearch(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  ГІГЁГЇГ®Г¬ '%s' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", search);
 }
 
 void searchComposition(int mode) {
 	char search[N];
-	printf("Пошук за складом:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  Г±ГЄГ«Г Г¤Г®Г¬:");
 	scanf_s("%s", search, N);
 	searchMessage(mode, "\nSearch for a composition '%s'\n", search);
 
@@ -425,12 +425,12 @@ void searchComposition(int mode) {
 		if (strncmp(massiveProd[inx].composition, search, strlen(search)) == 0)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearch(found, mode, "\nПошук за складом '%s' не дав результатів.\n", search);
+	noSearch(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  Г±ГЄГ«Г Г¤Г®Г¬ '%s' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", search);
 }
 
 void searchCountry(int mode) {
 	char search[N];
-	printf("Пошук за країною виробника:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  ГЄГ°Г ВїГ­Г®Гѕ ГўГЁГ°Г®ГЎГ­ГЁГЄГ :");
 	scanf_s("%s", search, N);
 	searchMessage(mode, "\nSearch for a county '%s'\n", search);
 
@@ -439,15 +439,15 @@ void searchCountry(int mode) {
 		if (strncmp(massiveProd[inx].country, search, strlen(search)) == 0)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearch(found, mode, "\nПошук за країною виробника '%s' не дав результатів.\n", search);
+	noSearch(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  ГЄГ°Г ВїГ­Г®Гѕ ГўГЁГ°Г®ГЎГ­ГЁГЄГ  '%s' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", search);
 }
 
 void searchWeight(int mode) {
 	float start;
 	float finish;
-	printf("Пошук за масою нетто:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  Г¬Г Г±Г®Гѕ Г­ГҐГІГІГ®:");
 	do {
-		printf("\nВведіть межі пошуку від до:");
+		printf("\nГ‚ГўГҐГ¤ВіГІГј Г¬ГҐГ¦Ві ГЇГ®ГёГіГЄГі ГўВіГ¤ Г¤Г®:");
 		scanf_s("%f%f", &start, &finish);
 	} while (start < 0.0 || finish < 0.0);
 
@@ -463,15 +463,15 @@ void searchWeight(int mode) {
 		if (massiveProd[inx].weight >= start && massiveProd[inx].weight <= finish)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearchF(found, mode, "\nПошук за масою нетто від '%.2f' до '%.2f' не дав результатів.\n", start, finish);
+	noSearchF(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  Г¬Г Г±Г®Гѕ Г­ГҐГІГІГ® ГўВіГ¤ '%.2f' Г¤Г® '%.2f' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", start, finish);
 }
 
 void searchPriceBuy(int mode) {
 	float start;
 	float finish;
-	printf("Пошук за ціною закупки:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  Г¶ВіГ­Г®Гѕ Г§Г ГЄГіГЇГЄГЁ:");
 	do {
-		printf("\nВведіть межі пошуку від до:");
+		printf("\nГ‚ГўГҐГ¤ВіГІГј Г¬ГҐГ¦Ві ГЇГ®ГёГіГЄГі ГўВіГ¤ Г¤Г®:");
 		scanf_s("%f%f", &start, &finish);
 	} while (start < 0.0 || finish < 0.0);
 
@@ -486,15 +486,15 @@ void searchPriceBuy(int mode) {
 			found = searchProcess(found, mode, inx);
 		}
 	}
-	noSearchF(found, mode, "\nПошук за ціною закупки від '%.2f' до '%.2f' не дав результатів.\n", start, finish);
+	noSearchF(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  Г¶ВіГ­Г®Гѕ Г§Г ГЄГіГЇГЄГЁ ГўВіГ¤ '%.2f' Г¤Г® '%.2f' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", start, finish);
 }
 
 void searchPriceSell(int mode) {
 	float start;
 	float finish;
-	printf("Пошук за ціною продажу:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  Г¶ВіГ­Г®Гѕ ГЇГ°Г®Г¤Г Г¦Гі:");
 	do {
-		printf("\nВведіть межі пошуку від до:");
+		printf("\nГ‚ГўГҐГ¤ВіГІГј Г¬ГҐГ¦Ві ГЇГ®ГёГіГЄГі ГўВіГ¤ Г¤Г®:");
 		scanf_s("%f%f", &start, &finish);
 	} while (start < 0.0 || finish < 0.0);
 
@@ -510,15 +510,15 @@ void searchPriceSell(int mode) {
 		if (massiveProd[inx].priceSell >= start && massiveProd[inx].priceSell <= finish)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearchF(found, mode, "\nПошук за ціною продажу від '%.2f' до '%.2f' не дав результатів.\n", start, finish);
+	noSearchF(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  Г¶ВіГ­Г®Гѕ ГЇГ°Г®Г¤Г Г¦Гі ГўВіГ¤ '%.2f' Г¤Г® '%.2f' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", start, finish);
 }
 
 void searchQuantity(int mode) {
 	int start;
 	int finish;
-	printf("Пошук за кількістю товару:");
+	printf("ГЏГ®ГёГіГЄ Г§Г  ГЄВіГ«ГјГЄВіГ±ГІГѕ ГІГ®ГўГ Г°Гі:");
 	do {
-		printf("\nВведіть межі пошуку від до:");
+		printf("\nГ‚ГўГҐГ¤ВіГІГј Г¬ГҐГ¦Ві ГЇГ®ГёГіГЄГі ГўВіГ¤ Г¤Г®:");
 		scanf_s("%d%d", &start, &finish);
 	} while (start < 0 || finish < 0);
 
@@ -532,5 +532,5 @@ void searchQuantity(int mode) {
 		if (massiveProd[inx].quantity >= start && massiveProd[inx].quantity <= finish)
 			found = searchProcess(found, mode, inx);
 	}
-	noSearchF(found, mode, "\nПошук за кількістю від '%d' до '%d' не дав результатів.\n", start, finish);
+	noSearchF(found, mode, "\nГЏГ®ГёГіГЄ Г§Г  ГЄВіГ«ГјГЄВіГ±ГІГѕ ГўВіГ¤ '%d' Г¤Г® '%d' Г­ГҐ Г¤Г Гў Г°ГҐГ§ГіГ«ГјГІГ ГІВіГў.\n", start, finish);
 }
