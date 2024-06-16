@@ -1,18 +1,18 @@
 #include "myLib.h"
 
-//Окремі функції зчитування файлів
+//РћРєСЂРµРјС– С„СѓРЅРєС†С–С— Р·С‡РёС‚СѓРІР°РЅРЅСЏ С„Р°Р№Р»С–РІ
 
 Product* readFile() {
 	FILE* file;
 	fopen_s(&file, "Products.txt", "r");
 	if (file == NULL) {
-		puts("Помилка відкриття файлу \n");
+		puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ \n");
 		exit(1);
 	}
 
 	fseek(file, 0, SEEK_END);
 	if (ftell(file) == 0) {
-		printf("Файл пустий, заповніть його!\n");
+		printf("Р¤Р°Р№Р» РїСѓСЃС‚РёР№, Р·Р°РїРѕРІРЅС–С‚СЊ Р№РѕРіРѕ!\n");
 		fclose(file);
 		id += 1;
 		num += 1;
@@ -20,7 +20,7 @@ Product* readFile() {
 		Product* massive = (Product*)malloc(num * sizeof(Product));
 
 		if (massive == NULL) {
-			printf("\nДинамічний масив неіснує.\n");
+			printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 			return NULL;
 		}
 		massive[0] = initProduct(id);
@@ -36,7 +36,7 @@ Product* readFile() {
 		id = idf;
 		Product* massive = (Product*)malloc(number * sizeof(Product));
 		if (massive == NULL) {
-			printf("\nДинамічний масив неіснує.\n");
+			printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 			exit(1);
 		}
 		int i = 0;
@@ -54,7 +54,7 @@ int readCassaNum() {
 	FILE* file;
 	fopen_s(&file, "CassaNum.txt", "r");
 	if (file == NULL) {
-		puts("Помилка відкриття файлу \n");
+		puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ \n");
 		exit(1);
 	}
 	fseek(file, 0, SEEK_END);
@@ -71,7 +71,7 @@ int readCassaNum() {
 	}
 }
 
-//Функції для різних перевірок
+//Р¤СѓРЅРєС†С–С— РґР»СЏ СЂС–Р·РЅРёС… РїРµСЂРµРІС–СЂРѕРє
 
 int checkChoice(int choice) {
 	if (choice == 0) {
@@ -93,16 +93,16 @@ int checkPass() {
 	fopen_s(&file, "Admin.txt", "r");
 
 	if (file == NULL) {
-		puts("Помилка відкриття файлу \n");
+		puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ \n");
 		exit(1);
 	}
 
 	fread_s(&password, sizeof(password), sizeof(password), 1, file);
 	fclose(file);
-	printf("Введіть пароль (10 сим макс):");
+	printf("Р’РІРµРґС–С‚СЊ РїР°СЂРѕР»СЊ (10 СЃРёРј РјР°РєСЃ):");
 	scanf_s("%s", test, N);
 	if (strcmp(password, test) != 0) {
-		printf("\nНевірний пароль!!!\n");
+		printf("\nРќРµРІС–СЂРЅРёР№ РїР°СЂРѕР»СЊ!!!\n");
 		writeSecurity(0, test);
 		return 0;
 	}
@@ -116,7 +116,7 @@ int checkAdmin() {
 	FILE* file;
 	fopen_s(&file, "Admin.txt", "r");
 	if (file == NULL) {
-		puts("Помилка відкриття файлу \n");
+		puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ \n");
 		exit(1);
 	}
 	fseek(file, 0, SEEK_END);
@@ -140,7 +140,7 @@ int checkEmpty() {
 	return empty;
 }
 
-//Функції адміністратора
+//Р¤СѓРЅРєС†С–С— Р°РґРјС–РЅС–СЃС‚СЂР°С‚РѕСЂР°
 
 Product* addProduct() {
 	id += 1;
@@ -148,7 +148,7 @@ Product* addProduct() {
 
 	Product* massiveAdd = (Product*)malloc(num * sizeof(Product));
 	if (massiveAdd == NULL) {
-		printf("\nДинамічний масив неіснує.\n");
+		printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 		exit(1);
 	}
 	for (int i = 0; i < num - 1; i++) {
@@ -163,11 +163,11 @@ Product* addProduct() {
 
 Product* delProduct(int choice) {
 	if (choice == 0) {
-		printf("Неправильний вибір!!!\n");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!\n");
 		return massiveProd;
 	}
 	if (num <= 1) {
-		printf("Видалення не можливе!!!\n");
+		printf("Р’РёРґР°Р»РµРЅРЅСЏ РЅРµ РјРѕР¶Р»РёРІРµ!!!\n");
 		showArr(massiveProd);
 		return massiveProd;
 	}
@@ -179,13 +179,13 @@ Product* delProduct(int choice) {
 	num -= 1;
 	Product* massiveDel = (Product*)malloc(num * sizeof(Product));
 	if (massiveDel == NULL) {
-		printf("\nДинамічний масив неіснує.\n");
+		printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 		exit(1);
 	}
 	for (int i = 0; i < num; i++) {
 		massiveDel[i] = massiveProd[i];
 	}
-	printf("\nВидалено дані %dго товару.\n", choice);
+	printf("\nР’РёРґР°Р»РµРЅРѕ РґР°РЅС– %dРіРѕ С‚РѕРІР°СЂСѓ.\n", choice);
 	showArr(massiveDel);
 	writeFile(massiveProd);
 	free(massiveProd);
@@ -194,75 +194,75 @@ Product* delProduct(int choice) {
 
 void editProduct(int choice) {
 	if (choice == 0) {
-		printf("Неправильний вибір!!!\n");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!\n");
 		return;
 	}
 	int comd;
-	printf("Редагування %d товару:", massiveProd[choice - 1].id);
+	printf("Р РµРґР°РіСѓРІР°РЅРЅСЏ %d С‚РѕРІР°СЂСѓ:", massiveProd[choice - 1].id);
 	showEdit(massiveProd[choice - 1]);
 	do {
-		puts("\nВиберіть рядок який хочете змінити,Повернутися - 0,Змінити повністю - 9");
+		puts("\nР’РёР±РµСЂС–С‚СЊ СЂСЏРґРѕРє СЏРєРёР№ С…РѕС‡РµС‚Рµ Р·РјС–РЅРёС‚Рё,РџРѕРІРµСЂРЅСѓС‚РёСЃСЏ - 0,Р—РјС–РЅРёС‚Рё РїРѕРІРЅС–СЃС‚СЋ - 9");
 		scanf_s("%d", &comd);
 		switch (comd)
 		{
 		case 0:
 			break;
 		case 1:
-			printf("Введіть назву:");
+			printf("Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ:");
 			scanf_s("%s", massiveProd[choice - 1].name, STRING);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 2:
-			printf("Введіть тип кави (мелена,зерно...):");
+			printf("Р’РІРµРґС–С‚СЊ С‚РёРї РєР°РІРё (РјРµР»РµРЅР°,Р·РµСЂРЅРѕ...):");
 			scanf_s("%s", massiveProd[choice - 1].type, STRING);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 3:
-			printf("Введіть склад кави (арабіка,робуста...):");
+			printf("Р’РІРµРґС–С‚СЊ СЃРєР»Р°Рґ РєР°РІРё (Р°СЂР°Р±С–РєР°,СЂРѕР±СѓСЃС‚Р°...):");
 			scanf_s("%s", massiveProd[choice - 1].composition, STRING);
 			showEdit(massiveProd[choice - 1]);
 			break;
 
 		case 4:
-			printf("Введіть країну виробника:");
+			printf("Р’РІРµРґС–С‚СЊ РєСЂР°С—РЅСѓ РІРёСЂРѕР±РЅРёРєР°:");
 			scanf_s("%s", massiveProd[choice - 1].country, STRING);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 5:
 			do {
-				printf("Введіть масу нетто в грамах:");
+				printf("Р’РІРµРґС–С‚СЊ РјР°СЃСѓ РЅРµС‚С‚Рѕ РІ РіСЂР°РјР°С…:");
 				scanf_s("%f", &massiveProd[choice - 1].weight);
 			} while (massiveProd[choice - 1].weight <= 0);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 6:
 			do {
-				printf("Введіть ціну закупки:");
+				printf("Р’РІРµРґС–С‚СЊ С†С–РЅСѓ Р·Р°РєСѓРїРєРё:");
 				scanf_s("%f", &massiveProd[choice - 1].priceBuy);
 			} while (massiveProd[choice - 1].priceBuy <= 0.0);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 7:
 			do {
-				printf("Введіть ціну продажу:");
+				printf("Р’РІРµРґС–С‚СЊ С†С–РЅСѓ РїСЂРѕРґР°Р¶Сѓ:");
 				scanf_s("%f", &massiveProd[choice - 1].priceSell);
 			} while (massiveProd[choice - 1].priceSell <= massiveProd[choice - 1].priceBuy);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 8:
 			do {
-				printf("Введіть кількість товару:");
+				printf("Р’РІРµРґС–С‚СЊ РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ:");
 				scanf_s("%d", &massiveProd[choice - 1].quantity);
 			} while (massiveProd[choice - 1].quantity < 0);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		case 9:
-			printf("Повна заміна:");
+			printf("РџРѕРІРЅР° Р·Р°РјС–РЅР°:");
 			massiveProd[choice - 1] = initProduct(choice);
 			showEdit(massiveProd[choice - 1]);
 			break;
 		default:
-			printf("Неправильний вибір!!!");
+			printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!");
 			break;
 		}
 	} while (comd != 0);
@@ -272,17 +272,17 @@ void editProduct(int choice) {
 
 void sortProduct(int mode) {
 	if (mode) {
-		printf("\n1 - назва, 2 - тип кави, 3- склад кави, 4 - країна виробника, 5 - маса нетто");
-		printf("\n6 - ціна продажу, 7 - за популярністю , 8 - кількість, 9 - ціна закупки ,10 - id\n");
+		printf("\n1 - РЅР°Р·РІР°, 2 - С‚РёРї РєР°РІРё, 3- СЃРєР»Р°Рґ РєР°РІРё, 4 - РєСЂР°С—РЅР° РІРёСЂРѕР±РЅРёРєР°, 5 - РјР°СЃР° РЅРµС‚С‚Рѕ");
+		printf("\n6 - С†С–РЅР° РїСЂРѕРґР°Р¶Сѓ, 7 - Р·Р° РїРѕРїСѓР»СЏСЂРЅС–СЃС‚СЋ , 8 - РєС–Р»СЊРєС–СЃС‚СЊ, 9 - С†С–РЅР° Р·Р°РєСѓРїРєРё ,10 - id\n");
 	}
 	else {
-		printf("\n1 - назва, 2 - тип кави, 3- склад кави, 4 - країна виробника, 5 - маса нетто");
-		printf("\n6 - ціна товару, 7 - за популярністю\n");
+		printf("\n1 - РЅР°Р·РІР°, 2 - С‚РёРї РєР°РІРё, 3- СЃРєР»Р°Рґ РєР°РІРё, 4 - РєСЂР°С—РЅР° РІРёСЂРѕР±РЅРёРєР°, 5 - РјР°СЃР° РЅРµС‚С‚Рѕ");
+		printf("\n6 - С†С–РЅР° С‚РѕРІР°СЂСѓ, 7 - Р·Р° РїРѕРїСѓР»СЏСЂРЅС–СЃС‚СЋ\n");
 	}
 	int choice = 0;
 	int flagChoice;
 	do {
-		printf("Виберіть за яким полем буде сортування:");
+		printf("Р’РёР±РµСЂС–С‚СЊ Р·Р° СЏРєРёРј РїРѕР»РµРј Р±СѓРґРµ СЃРѕСЂС‚СѓРІР°РЅРЅСЏ:");
 		flagChoice = scanf_s("%d", &choice);
 		if (flagChoice != 1) {
 			int c;
@@ -291,52 +291,52 @@ void sortProduct(int mode) {
 	} while (flagChoice != 1);
 
 	if (!mode && choice > 7) {
-		printf("Неправильний вибір!!!");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!");
 		return;
 	}
 	switch (choice) {
 	case 1:
-		printf("\nСортування за назвою виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РЅР°Р·РІРѕСЋ РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compName);
 		break;
 	case 2:
-		printf("\nСортування за типом виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° С‚РёРїРѕРј РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compType);
 		break;
 	case 3:
-		printf("\nСортування за складом виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° СЃРєР»Р°РґРѕРј РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compComposition);
 		break;
 	case 4:
-		printf("\nСортування за країною виробника виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РєСЂР°С—РЅРѕСЋ РІРёСЂРѕР±РЅРёРєР° РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compCountry);
 		break;
 	case 5:
-		printf("\nСортування за вагою виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РІР°РіРѕСЋ РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compWeight);
 		break;
 	case 6:
-		printf("\nСортування за ціною виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° С†С–РЅРѕСЋ РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compPriceSell);
 		break;
 	case 7:
-		printf("\nСортування за популярністю виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РїРѕРїСѓР»СЏСЂРЅС–СЃС‚СЋ РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compPopularity);
 		break;
 	case 8:
-		printf("\nСортування за кількістю товару виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° РєС–Р»СЊРєС–СЃС‚СЋ С‚РѕРІР°СЂСѓ РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compQuantity);
 		break;
 	case 9:
-		printf("\nСортування за ціною закупки виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° С†С–РЅРѕСЋ Р·Р°РєСѓРїРєРё РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compPriceBuy);
 		break;
 	case 10:
-		printf("\nСортування за Id виконане:\n");
+		printf("\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ Р·Р° Id РІРёРєРѕРЅР°РЅРµ:\n");
 		qsort(massiveProd, num, sizeof(Product), compId);
 		break;
 	default:
-		printf("Неправильний вибір!!!");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!");
 		return;
 	}
 
@@ -352,17 +352,17 @@ void sortProduct(int mode) {
 
 void searchProduct(int mode) {
 	if (mode) {
-		printf("\n1 - назва, 2 - тип кави, 3- склад кави, 4 - країна виробника, 5 - маса нетто");
-		printf("\n6 - ціна продажу, 7 - ціна закупки, 8 - кількість\n");
+		printf("\n1 - РЅР°Р·РІР°, 2 - С‚РёРї РєР°РІРё, 3- СЃРєР»Р°Рґ РєР°РІРё, 4 - РєСЂР°С—РЅР° РІРёСЂРѕР±РЅРёРєР°, 5 - РјР°СЃР° РЅРµС‚С‚Рѕ");
+		printf("\n6 - С†С–РЅР° РїСЂРѕРґР°Р¶Сѓ, 7 - С†С–РЅР° Р·Р°РєСѓРїРєРё, 8 - РєС–Р»СЊРєС–СЃС‚СЊ\n");
 	}
 	else {
-		printf("\n1 - назва, 2 - тип кави, 3- склад кави, 4 - країна виробника, 5 - маса нетто,6 - ціна товару\n");
+		printf("\n1 - РЅР°Р·РІР°, 2 - С‚РёРї РєР°РІРё, 3- СЃРєР»Р°Рґ РєР°РІРё, 4 - РєСЂР°С—РЅР° РІРёСЂРѕР±РЅРёРєР°, 5 - РјР°СЃР° РЅРµС‚С‚Рѕ,6 - С†С–РЅР° С‚РѕРІР°СЂСѓ\n");
 	}
 
 	int choice = 0;
 	int flagChoice;
 	do {
-		printf("Виберіть за яким полем буде пошук:");
+		printf("Р’РёР±РµСЂС–С‚СЊ Р·Р° СЏРєРёРј РїРѕР»РµРј Р±СѓРґРµ РїРѕС€СѓРє:");
 		flagChoice = scanf_s("%d", &choice);
 		if (flagChoice != 1) {
 			int c;
@@ -371,7 +371,7 @@ void searchProduct(int mode) {
 	} while (flagChoice != 1);
 
 	if (!mode && choice > 6) {
-		printf("Неправильний вибір!!!");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!");
 		return;
 	}
 
@@ -401,27 +401,27 @@ void searchProduct(int mode) {
 		searchQuantity(mode);
 		break;
 	default:
-		printf("Неправильний вибір!!!");
+		printf("РќРµРїСЂР°РІРёР»СЊРЅРёР№ РІРёР±С–СЂ!!!");
 		return;
 	}
 }
 
-void cashСounting() {
+void cashCounting() {
 	if (cassa == 0) {
-		printf("\nЗаписів покупок поки що немає!\n");
+		printf("\nР—Р°РїРёСЃС–РІ РїРѕРєСѓРїРѕРє РїРѕРєРё С‰Рѕ РЅРµРјР°С”!\n");
 		return;
 	}
 	FILE* file;
 	fopen_s(&file, "Cassa.txt", "r");
 
 	if (file == NULL) {
-		puts("Помилка відкриття файлу \n");
+		puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ \n");
 		exit(1);
 	}
 
 	Cart* massive = (Cart*)malloc(cassa * sizeof(Cart));
 	if (massive == NULL) {
-		printf("\nДинамічний масив неіснує.\n");
+		printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 		exit(1);
 	}
 	int i = 0;
@@ -437,62 +437,62 @@ void cashСounting() {
 	}
 	float profit = allCassa - allDisperse;
 	showCartArr(massive, cassa, 0);
-	printf("\n\nЗагальна касса - %.2f грн.", allCassa);
-	printf("\nВитрати на проданий товар - %.2f грн.", allDisperse);
-	printf("\nЧистий прибуток - %.2f грн.\n", profit);
+	printf("\n\nР—Р°РіР°Р»СЊРЅР° РєР°СЃСЃР° - %.2f РіСЂРЅ.", allCassa);
+	printf("\nР’РёС‚СЂР°С‚Рё РЅР° РїСЂРѕРґР°РЅРёР№ С‚РѕРІР°СЂ - %.2f РіСЂРЅ.", allDisperse);
+	printf("\nР§РёСЃС‚РёР№ РїСЂРёР±СѓС‚РѕРє - %.2f РіСЂРЅ.\n", profit);
 	free(massive);
 }
 
 void clearData() {
 	FILE* file1 = fopen("Products.txt", "w");
 	if (file1 == NULL) {
-		perror("Помилка відкриття Products.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ Products.txt");
 		exit(1);
 	}
 	fclose(file1);
 
 	FILE* file2 = fopen("Security.txt", "w");
 	if (file2 == NULL) {
-		perror("Помилка відкриття Security.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ Security.txt");
 		exit(1);
 	}
 	fclose(file2);
 
 	FILE* file3 = fopen("searchHistory.txt", "w");
 	if (file3 == NULL) {
-		perror("Помилка відкриття searchHistory.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ searchHistory.txt");
 		exit(1);
 	}
 	fclose(file3);
 
 	FILE* file4 = fopen("Deleted.txt", "w");
 	if (file4 == NULL) {
-		perror("Помилка відкриття Deleted.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ Deleted.txt");
 		exit(1);
 	}
 	fclose(file4);
 
 	FILE* file5 = fopen("CassaNum.txt", "w");
 	if (file5 == NULL) {
-		perror("Помилка відкриття CassaNum.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ CassaNum.txt");
 		exit(1);
 	}
 	fclose(file5);
 
 	FILE* file6 = fopen("Cassa.txt", "w");
 	if (file6 == NULL) {
-		perror("Помилка відкриття Cassa.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ Cassa.txt");
 		exit(1);
 	}
 	fclose(file6);
 
 	FILE* file7 = fopen("Admin.txt", "w");
 	if (file7 == NULL) {
-		perror("Помилка відкриття Admin.txt");
+		perror("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ Admin.txt");
 		exit(1);
 	}
 	fclose(file7);
-	printf("Дані файлів видалено!\n");
+	printf("Р”Р°РЅС– С„Р°Р№Р»С–РІ РІРёРґР°Р»РµРЅРѕ!\n");
 	exit(0);
 }
 
@@ -505,7 +505,7 @@ Product* adminMenu(int mode) {
 	int flagChoice;
 	int flagEx, flagEd, flagDel, flagAdd, flagSort, flagCassa, flagSearch, flagClear, errInp;
 	do {
-		puts("\nВийти - exit 0,Редагувати - edit №Product,Видалити - del №Product,Додати - add 0,\nСортування - sort 0,Пошук - search 0,Касса - cassa 0,Очистити данні - clear 0");
+		puts("\nР’РёР№С‚Рё - exit 0,Р РµРґР°РіСѓРІР°С‚Рё - edit в„–Product,Р’РёРґР°Р»РёС‚Рё - del в„–Product,Р”РѕРґР°С‚Рё - add 0,\nРЎРѕСЂС‚СѓРІР°РЅРЅСЏ - sort 0,РџРѕС€СѓРє - search 0,РљР°СЃСЃР° - cassa 0,РћС‡РёСЃС‚РёС‚Рё РґР°РЅРЅС– - clear 0");
 		do {
 			flagEx = 0; flagEd = 0; flagDel = 0; flagAdd = 0, flagSort = 0, flagCassa = 0, flagClear = 0; flagSearch = 0, errInp = 0;
 			scanf_s("%s", &command, N);
@@ -538,7 +538,7 @@ Product* adminMenu(int mode) {
 
 			else {
 				errInp++;
-				printf("Неправильна команда!\n");
+				printf("РќРµРїСЂР°РІРёР»СЊРЅР° РєРѕРјР°РЅРґР°!\n");
 			}
 		} while (errInp == 1 || choice < 0 || choice > num || flagChoice != 1);
 
@@ -558,7 +558,7 @@ Product* adminMenu(int mode) {
 			massiveProd = addProduct();
 		}
 		else if (flagCassa) {
-			cashСounting();
+			cashCounting();
 			showArr(massiveProd);
 		}
 
@@ -577,12 +577,12 @@ Product* adminMenu(int mode) {
 	return massiveProd;
 }
 
-//Функції користувача
+//Р¤СѓРЅРєС†С–С— РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
 
 Cart* addCart(Product Product, int quantity) {
 	for (int i = 0; i < cart; i++) {
 		if (Product.id == massiveCart[i].product.id) {
-			printf("\nТовар Кава %s %s %.2f гр. вже є у кошику!\n", Product.name, Product.type, Product.weight);
+			printf("\nРўРѕРІР°СЂ РљР°РІР° %s %s %.2f РіСЂ. РІР¶Рµ С” Сѓ РєРѕС€РёРєСѓ!\n", Product.name, Product.type, Product.weight);
 			return massiveCart;
 		}
 	}
@@ -590,7 +590,7 @@ Cart* addCart(Product Product, int quantity) {
 	cart += 1;
 	Cart* massiveAdd = (Cart*)malloc(cart * sizeof(Cart));
 	if (massiveAdd == NULL) {
-		printf("\nДинамічний масив неіснує.\n");
+		printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 		exit(1);
 	}
 	for (int i = 0; i < cart - 1; i++) {
@@ -598,7 +598,7 @@ Cart* addCart(Product Product, int quantity) {
 	}
 	massiveAdd[cart - 1] = initCart(Product, quantity);
 	totalPrice += massiveAdd[cart - 1].priceAll;
-	printf("\nТовар Кава %s %s %.2f гр. кількістю %d додано у кошик\n", Product.name, Product.type, Product.weight, quantity);
+	printf("\nРўРѕРІР°СЂ РљР°РІР° %s %s %.2f РіСЂ. РєС–Р»СЊРєС–СЃС‚СЋ %d РґРѕРґР°РЅРѕ Сѓ РєРѕС€РёРє\n", Product.name, Product.type, Product.weight, quantity);
 	free(massiveCart);
 	return massiveAdd;
 }
@@ -610,13 +610,13 @@ Cart* delCart(int choice) {
 	cart -= 1;
 	Cart* massiveDel = (Cart*)malloc(cart * sizeof(Cart));
 	if (massiveDel == NULL) {
-		printf("\nДинамічний масив неіснує.\n");
+		printf("\nР”РёРЅР°РјС–С‡РЅРёР№ РјР°СЃРёРІ РЅРµС–СЃРЅСѓС”.\n");
 		exit(1);
 	}
 	for (int i = 0; i < cart; i++) {
 		massiveDel[i] = massiveCart[i];
 	}
-	printf("\nВидалено товар №%d з кошику.\n", choice);
+	printf("\nР’РёРґР°Р»РµРЅРѕ С‚РѕРІР°СЂ в„–%d Р· РєРѕС€РёРєСѓ.\n", choice);
 	float totalPrice1 = 0;
 	for (int i = 0; i < cart; i++) {
 		totalPrice1 += massiveDel[i].priceAll;
@@ -629,10 +629,10 @@ Cart* delCart(int choice) {
 
 void editCart(int choice) {
 	int newQuantity;
-	printf("\nВведіть нову кількість:");
+	printf("\nР’РІРµРґС–С‚СЊ РЅРѕРІСѓ РєС–Р»СЊРєС–СЃС‚СЊ:");
 	scanf_s("%d", &newQuantity);
 	if (newQuantity < 0 || newQuantity > massiveCart[choice - 1].product.quantity) {
-		printf("\nТакої кількості товару під номером %d немає!!!", choice);
+		printf("\nРўР°РєРѕС— РєС–Р»СЊРєРѕСЃС‚С– С‚РѕРІР°СЂСѓ РїС–Рґ РЅРѕРјРµСЂРѕРј %d РЅРµРјР°С”!!!", choice);
 		return;
 	}
 
@@ -657,7 +657,7 @@ void payCart() {
 			}
 		}
 	}
-	printf("\nВаш товар оплачено.Дякуюємо за покупку!\n");
+	printf("\nР’Р°С€ С‚РѕРІР°СЂ РѕРїР»Р°С‡РµРЅРѕ.Р”СЏРєСѓСЋС”РјРѕ Р·Р° РїРѕРєСѓРїРєСѓ!\n");
 	qsort(massiveProd, num, sizeof(Product), compId);
 	writeFile(massiveProd);
 	cassa = readCassaNum();
@@ -677,11 +677,11 @@ void payCart() {
 
 Cart* cartMenu() {
 	if (cart == 0) {
-		printf("\nКошик порожній,поповніть його.\n");
+		printf("\nРљРѕС€РёРє РїРѕСЂРѕР¶РЅС–Р№,РїРѕРїРѕРІРЅС–С‚СЊ Р№РѕРіРѕ.\n");
 		return massiveCart;
 	}
 	else {
-		printf("\nВаш кошик:\n");
+		printf("\nР’Р°С€ РєРѕС€РёРє:\n");
 		showCartArr(massiveCart, cart, 1);
 	}
 	char command[N];
@@ -689,7 +689,7 @@ Cart* cartMenu() {
 	int flagChoice;
 	int flagEx, flagEd, flagDel, flagPay, errInp;
 	do {
-		puts("\nПовернутися - exit 1,Редагувати кількість товару- edit №Cart,Видалити - del №Cart,Оплатити - pay 1");
+		puts("\nРџРѕРІРµСЂРЅСѓС‚РёСЃСЏ - exit 1,Р РµРґР°РіСѓРІР°С‚Рё РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ- edit в„–Cart,Р’РёРґР°Р»РёС‚Рё - del в„–Cart,РћРїР»Р°С‚РёС‚Рё - pay 1");
 		do {
 			flagEx = 0; flagEd = 0; flagDel = 0; flagPay = 0; errInp = 0;
 			scanf_s("%s", &command, N);
@@ -709,7 +709,7 @@ Cart* cartMenu() {
 
 			else {
 				errInp++;
-				printf("Неправильна команда!\n");
+				printf("РќРµРїСЂР°РІРёР»СЊРЅР° РєРѕРјР°РЅРґР°!\n");
 			}
 		} while (errInp == 1 || choice < 1 || choice > cart || flagChoice != 1);
 
@@ -742,23 +742,23 @@ int main() {
 		char pass1[N];
 		char pass2[N];
 		int check = 0;
-		printf("\nВітаємо новий адмін!\n");
+		printf("\nР’С–С‚Р°С”РјРѕ РЅРѕРІРёР№ Р°РґРјС–РЅ!\n");
 		int flag = 1;
 		while (flag) {
-			printf("Введіть пароль (10 сим):");
+			printf("Р’РІРµРґС–С‚СЊ РїР°СЂРѕР»СЊ (10 СЃРёРј):");
 			scanf_s("%s", pass1, N);
-			printf("Підтвердіть пароль:");
+			printf("РџС–РґС‚РІРµСЂРґС–С‚СЊ РїР°СЂРѕР»СЊ:");
 			scanf_s("%s", pass2, N);
 			if (strcmp(pass1, pass2) == 0) {
 				flag = 0;
 				break;
 			}
 		}
-		printf("Пароль успішно підтверджено!\n");
+		printf("РџР°СЂРѕР»СЊ СѓСЃРїС–С€РЅРѕ РїС–РґС‚РІРµСЂРґР¶РµРЅРѕ!\n");
 		FILE* file;
 		fopen_s(&file, "Admin.txt", "w");
 		if (file == NULL) {
-			puts("Помилка відкриття файлу \n");
+			puts("РџРѕРјРёР»РєР° РІС–РґРєСЂРёС‚С‚СЏ С„Р°Р№Р»Сѓ\n");
 			exit(1);
 		}
 		fwrite(&pass1, sizeof(pass1), 1, file);
@@ -766,14 +766,14 @@ int main() {
 		massiveProd = readFile();
 		adminMenu(0);
 	}
-	printf("Вітаємо в CoffeeMachine!\nНаш товар:\n");
+	printf("Р’С–С‚Р°С”РјРѕ РІ CoffeeMachine!\nРќР°С€ С‚РѕРІР°СЂ:\n");
 	massiveProd = readFile();
 	empty = checkEmpty();
 	showUserArr();
 	char command[N];
 	int flagEx, flagAdd, flagCart, flagSort, flagSearch, flagAdmin, errInp;
 	do {
-		puts("\nВийти - exit,Сортування - sort,Пошук - search\nДодати в корзину - add,Відкрити кошик - cart");
+		puts("\nР’РёР№С‚Рё - exit,РЎРѕСЂС‚СѓРІР°РЅРЅСЏ - sort,РџРѕС€СѓРє - search\nР”РѕРґР°С‚Рё РІ РєРѕСЂР·РёРЅСѓ - add,Р’С–РґРєСЂРёС‚Рё РєРѕС€РёРє - cart");
 		do {
 			flagEx = 0, flagAdd = 0, flagCart = 0, flagSort = 0, flagSearch = 0, flagAdmin = 0, errInp = 0;
 			scanf_s("%s", &command, N);
@@ -798,7 +798,7 @@ int main() {
 
 			else {
 				errInp++;
-				printf("Неправильна команда!\n");
+				printf("РќРµРїСЂР°РІРёР»СЊРЅР° РєРѕРјР°РЅРґР°!\n");
 			}
 		} while (errInp == 1);
 
@@ -810,15 +810,15 @@ int main() {
 
 		else if (flagAdd) {
 			int choice = 0, quantity = 0;
-			printf("Введіть номер товару та кількість товару: ");
+			printf("Р’РІРµРґС–С‚СЊ РЅРѕРјРµСЂ С‚РѕРІР°СЂСѓ С‚Р° РєС–Р»СЊРєС–СЃС‚СЊ С‚РѕРІР°СЂСѓ: ");
 			scanf_s("%d%d", &choice, &quantity);
 			if (choice > num - empty || choice <= 0) {
-				printf("\nТовару під таким номером не існує!!!\n");
+				printf("\nРўРѕРІР°СЂСѓ РїС–Рґ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РЅРµ С–СЃРЅСѓС”!!!\n");
 				continue;
 			}
 			Product Product = massiveProd[choice - 1];
 			if (quantity <= 0 || quantity > Product.quantity) {
-				printf("\nТакої кількості товару під номером %d немає!!!\n", choice);
+				printf("\nРўР°РєРѕС— РєС–Р»СЊРєРѕСЃС‚С– С‚РѕРІР°СЂСѓ РїС–Рґ РЅРѕРјРµСЂРѕРј %d РЅРµРјР°С”!!!\n", choice);
 				continue;
 			}
 			massiveCart = addCart(Product, quantity);
