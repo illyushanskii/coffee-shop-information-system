@@ -1,0 +1,14 @@
+id) Назва товару  тип кави  склад кави  країна виробника | маса нетто |
+ ціна закупки | ціна продажу | кількість товару | популярність |
+
+2) 2  2  2  2 | weight 2.00 gram|
+buy 2.00 UAH | sell 22.00 UAH | quantity 2 | popylarity 0 |
+
+2) 2  2  2  2 | weight 2.00 gram|
+buy 2.00 UAH | sell 22.00 UAH | quantity 2 | popylarity 0 |
+
+1) 1  1  1  1 | weight 1.00 gram|
+buy 1.00 UAH | sell 11.00 UAH | quantity 1 | popylarity 0 |
+
+4) 4  4  4  4 | weight 4.00 gram|
+buy 4.00 UAH | sell 44.00 UAH | quantity 4 | popylarity 0 |

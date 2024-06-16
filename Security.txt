@@ -1,0 +1,32 @@
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 14:23:43
+
+Entry watering, used password: 111 ,status: not successful
+Date: 16.6.2024
+Time: 14:27:46
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 14:27:51
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 14:29:34
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 14:34:36
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 14:35:10
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 17:19:12
+
+Entry watering, used password: 1111 ,status: successfully
+Date: 16.6.2024
+Time: 17:20:3
+

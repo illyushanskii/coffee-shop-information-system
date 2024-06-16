@@ -1,0 +1,13 @@
+
+Search for a name 'K'
+3) Kezs 3 3 weight - 3.00 price - 33.00
+5) Kep 5 5 weight - 5.00 price - 55.00
+
+Search for a name 'Kez'
+3) Kezs 3 3 weight - 3.00 price - 33.00
+
+Search for the sale price from '10.00' to '40.00'
+3) Kezs 3 3 weight - 3.00 price - 33.00
+
+Search for a name 'A'
+No search results
